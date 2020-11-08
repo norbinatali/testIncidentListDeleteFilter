@@ -1,0 +1,31 @@
+{
+	"components": {
+	    "x-550094-incident-list-delete": {
+	        "innerComponents": [
+				"now-card",
+				"now-card-footer",
+				"now-card-header",
+				"now-button",
+				"now-heading",
+				"now-toggle",
+				"now-loader",
+				"now-label-value",
+				"now-label-value-inline",
+				"now-label-value-stacked",
+				"now-template-card",
+				"now-template-card-attachment",
+				"now-template-card-omnichannel",
+			"now-modal",
+			"now-input",
+				"now-loader-label"],
+			"uiBuilder": {
+				"associatedTypes": ["global.core", "global.landing-page"],
+				"label": "My Component",
+				"icon": "document-outline",
+				"description": "A description of my component",
+				"category": "primitives"
+			}
+	    }
+	},
+	"scopeName": "x_550094_test_in_1"
+}

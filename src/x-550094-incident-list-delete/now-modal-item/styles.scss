@@ -1,0 +1,14 @@
+.modal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.label {
+    display: flex;
+    border-bottom: 1px solid black;
+    width: 48%;
+    margin: 5px;
+    margin-top: 15px;
+}

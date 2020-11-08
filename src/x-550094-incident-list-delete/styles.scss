@@ -1,0 +1,41 @@
+@import '@servicenow/sass-kit/host';
+.card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+.card-content {
+  flex: 0 0 100%;
+  padding: 10px;
+}
+.title{
+  text-align: center;
+}
+.wrap {
+
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: auto;
+}
+.filter-buttons{
+
+}
+.search {
+width: 300px;
+  margin: auto;
+}
+.filter-search-menu{
+  display: flex;
+
+}
+.no-response-found{
+  text-align: center;
+}
+.no-list-label{
+  padding-top: 100px;
+  margin-left: 45%;
+  display: inline-block;
+}
+.loader{
+  padding-top: 50px;
+}
