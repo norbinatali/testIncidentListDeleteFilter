@@ -72,28 +72,28 @@ const view = (state, {dispatch, updateState,}) => {
 						/>
 						<now-button
 							className="now-m-inline--xs"
-							variant={'secondary'}
+							variant={variantSort('assignment_group')}
 							size="sm"
 							label="By Assigment Group"
 							on-click={() => sortByParam('assignment_group')}
 						/>
 						<now-button
 							className="now-m-inline--xs"
-							variant={'secondary'}
+							variant={variantSort('state')}
 							size="sm"
 							label="By State"
 							on-click={() => sortByParam('state')}
 						/>
 						<now-button
 							className="now-m-inline--xs"
-							variant={'secondary'}
+							variant={variantSort('assigned_to')}
 							size="sm"
 							label="By Assigned To"
 							on-click={() => sortByParam('assigned_to')}
 						/>
 						<now-button
 							className="now-m-inline--xs"
-							variant={'secondary'}
+							variant={variantSort('updated_on')}
 							size="sm"
 							label="By Updated On"
 							on-click={() => sortByParam('updated_on')}
