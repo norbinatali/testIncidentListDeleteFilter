@@ -1,5 +1,6 @@
 import {actionTypes} from '@servicenow/ui-core';
-
+const {COMPONENT_BOOTSTRAPPED} = actionTypes;
+import {createHttpEffect} from "@servicenow/ui-effect-http";
 export const DELETE_INCIDENT = 'DELETE_INCIDENT';
 export const DELETE_INCIDENT_EFFECT = 'DELETE_INCIDENT_EFFECT';
 export const DELETE_INCIDENT_SUCCESS = 'DELETE_INCIDENT_SUCCESS';
@@ -12,10 +13,8 @@ export const TOGGLE_CLICKED = 'NOW_TOGGLE#CHECKED_SET';
 export const FETCH_LATEST_INCIDENT = "FETCH_LATEST_INCIDENT"
 export const FETCH_INCIDENTS_PARAMS = "FETCH_INCIDENTS_PARAMS";
 export const UPDATE_ITEM_REQUESTED = "UPDATE_ITEM_REQUESTED";
-import {createHttpEffect} from "@servicenow/ui-effect-http";
-export const SEARCH_REQUESTED = 'SEARCH_REQUESTED';
+export const GET_ITEMS = "GET_ITEMS";
 const FETCH_INCIDENT_SUCCESS = "FETCH_INCIDENT_SUCCESS";
-const {COMPONENT_BOOTSTRAPPED} = actionTypes;
 
 export default {
 	actionHandlers: {
@@ -53,7 +52,7 @@ export default {
 				pathParams: ['sys_id'],
 				successActionType: DELETE_INCIDENT_SUCCESS,
 			}),
-		'DELETE_INCIDENT_SUCCESS': ({state, updateState,dispatch}) => {
+		'DELETE_INCIDENT_SUCCESS': ({state, updateState, dispatch}) => {
 			dispatch('FETCH_LATEST_INCIDENT', {
 				sysparm_display_value: true,
 			});
@@ -85,17 +84,16 @@ export default {
 				modalIncident: null,
 			});
 		},
-		[SEARCH_REQUESTED]: ({dispatch, updateState, action}) => {
-			const {
-				payload: {searchString}
-			} = action;
-			const sysparm_query = `short_descriptionLIKE${searchString}^ORtextLIKE${searchString}`;
-			updateState({searchString});
-			dispatch(FETCH_LATEST_INCIDENT, {
-				table: 'incident',
-				sysparm_query,
-				sysparm_limit: 100
-			});
-		},
+
+		[GET_ITEMS]: ({dispatch, state}) => {
+			const {searchString, sortBy} = state;
+
+			const searchQuery = searchString ? `short_descriptionLIKE${searchString}^ORtextLIKE${searchString}` : '';
+			const sortQuery = Array.from(sortBy).map(item => "ORDERBY" + item).join("^");
+			const sysparm_query = `${sortQuery}^${searchQuery}`;
+
+			dispatch(FETCH_LATEST_INCIDENT, {sysparm_query, sysparm_display_value: true});
+		}
+
 	},
 };
